@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+Git-github-Notes.js
+React-Notes.js
 
 # testing
 /coverage
