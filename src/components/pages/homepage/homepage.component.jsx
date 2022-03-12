@@ -3,7 +3,6 @@ import Directory from "../../directory/directory.component";
 import "./homepage.styles.scss";
 
 const Homepage = (props) => {
-  console.log(props);
   return (
     <div className="homepage">
       <Directory />
