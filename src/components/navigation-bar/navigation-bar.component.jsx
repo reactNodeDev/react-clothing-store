@@ -17,6 +17,9 @@ const NavigationBar = () => {
           <Link className="nav-link" to={"/shop"}>
             Shop
           </Link>
+          <Link className="nav-link" to={"/signin"}>
+            {"Sign In".toLocaleUpperCase()}
+          </Link>
         </div>
       </div>
       <Outlet />
