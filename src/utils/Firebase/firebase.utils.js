@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  signInWithRedirect,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -12,20 +18,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const googleprovider = new GoogleAuthProvider(); // we can use this new instance of 'GoogleAuthProvider' anywhere we want to integrate a google sign-in
 
-provider.setCustomParameters({
+googleprovider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleprovider);
+
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleprovider);
 
 export const db = getFirestore();
 
-export const createUserDataFromAuth = async (userAuth) => {
+export const createUserDataFromAuth = async (userAuth, additionalInfo = {}) => {
+  // 'userAuth' is the details of the user authenticated by firebase
+  // in email and password login, firebase does not let us input 'displayName', so we are passing this 'additionalInfo' object so that we can pass 'displayName' in it and store it in our database
+
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
@@ -39,6 +53,7 @@ export const createUserDataFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInfo, //'additionalInfo' is the custom objbect we are passing in the start of this functn and now we are passing it inside 'setDoc()' method of firebase
       });
     } catch (error) {
       console.error("Error creating the document", error.message);
@@ -47,4 +62,9 @@ export const createUserDataFromAuth = async (userAuth) => {
 
   //if user data exists
   return userDocRef;
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
