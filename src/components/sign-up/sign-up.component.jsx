@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDataFromAuth,
@@ -61,7 +61,9 @@ const SignUpForm = () => {
   return (
     <div className="sign-up-container">
       <h2>Dont Have an Account?</h2>
-      <span>Create an Account and Sign up Now</span>
+      <span>
+        Create an Account and <b>SIGN UP</b> Now
+      </span>
       <form action="" onSubmit={handleSubmit}>
         <FormInput
           label="Username"
@@ -80,6 +82,11 @@ const SignUpForm = () => {
           value={email}
           onChange={handleChange}
         />
+        {errorMessage.msg.includes("Email") && (
+          <Fragment>
+            <ErrorMessage errorMsg={errorMessage} />
+          </Fragment>
+        )}
 
         <FormInput
           label="Password"
@@ -98,10 +105,14 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={handleChange}
         />
+        {errorMessage.msg.includes("Passwords") && (
+          <Fragment>
+            <ErrorMessage errorMsg={errorMessage} />
+          </Fragment>
+        )}
 
         <Button type="submit" children="Sign Up" />
       </form>
-      <ErrorMessage errorMsg={errorMessage} />
     </div>
   );
 };
