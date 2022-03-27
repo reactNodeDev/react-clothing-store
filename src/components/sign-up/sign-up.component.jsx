@@ -7,6 +7,7 @@ import Button from "../button/button.component";
 import ErrorMessage from "../error-message/error-message.component";
 import FormInput from "../form-inputs/form-input.component";
 import "./sign-up.styles.scss";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -49,6 +50,7 @@ const SignUpForm = () => {
       );
 
       await createUserDataFromAuth(user, { displayName }); // 'displayName' is passed as a property for the 'additionalInfo' obj which was passed as a parameter in 'createUserDataFromAuth'. 'additionalInfo' parameter was passed there bcz we wanted to pass 'displayName' too inside 'createUserDataFromAuth' here
+
       resetFormFields();
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {

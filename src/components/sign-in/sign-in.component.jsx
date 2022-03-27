@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  createUserDataFromAuth,
   signInWithGooglePopup,
   signInUserWithEmailAndPassword,
 } from "../../utils/Firebase/firebase.utils";
@@ -23,6 +22,8 @@ const SignInForm = () => {
     displayProp: "none",
   });
 
+  // const { setCurrentUser } = useContext(UserContext); // accessing the 'setCurrentUser' property in 'UserContext' component so that we can set and store the logged-in user into the 'currentUser' property in 'UserContext'
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
     setErrorMsgDiv({ msg: "", displayProp: "none" });
@@ -38,8 +39,10 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      const response = await signInUserWithEmailAndPassword(email, password);
-      console.log(response);
+      await signInUserWithEmailAndPassword(email, password);
+
+      // setCurrentUser(user); // here using the 'setCurrentUser' method of 'UserContext', we have set and stored the logged-in user into the 'currentUser' property of 'UseContext', so that it can be accessible to all the components
+
       resetFormFields();
     } catch (err) {
       switch (err.code) {
@@ -63,8 +66,7 @@ const SignInForm = () => {
 
   const logGoogleUser = async (e) => {
     e.preventDefault();
-    const { user } = await signInWithGooglePopup();
-    createUserDataFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
