@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Directory from "../../components/directory/directory.component";
+import { CartContext } from "../../contexts/cart.context";
 import "./home.styles.scss";
 
 const Home = (props) => {
@@ -34,8 +35,13 @@ const Home = (props) => {
     },
   ];
 
+  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const hideCartDropdown = () => {
+    if (isCartOpen) setIsCartOpen(!isCartOpen);
+    else return;
+  };
   return (
-    <div>
+    <div onClick={hideCartDropdown}>
       <Outlet />
       <Directory categories={categories} />
     </div>

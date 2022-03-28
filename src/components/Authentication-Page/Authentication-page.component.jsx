@@ -5,10 +5,11 @@ import {
   auth,
 } from "../../utils/Firebase/firebase.utils";
 import { getRedirectResult } from "firebase/auth";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import SignUp from "../sign-up/sign-up.component";
 import SignInForm from "../sign-in/sign-in.component";
 import "./authentication-page.styles.scss";
+// import { CartContext } from "../../contexts/cart.context";
 
 const AuthenticationPage = () => {
   useEffect(async () => {
@@ -18,6 +19,8 @@ const AuthenticationPage = () => {
       const userDocRef = await createUserDataFromAuth(response.user);
     }
   }, []);
+
+  // const { hideCart } = useContext(CartContext);
 
   return (
     <div className="authentication-page">
