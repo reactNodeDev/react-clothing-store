@@ -39,20 +39,31 @@ const subtractProductFromCart = (cartItemsArray, itemToAdd) => {
   }
 };
 
+const calculateCartTotal = (cartItemsArray) => {
+  const totalSum = cartItemsArray.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
+  return totalSum;
+};
+
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
   hideCart: () => {},
   dontHideCart: () => {},
   cartItems: [],
+  cartTotal: 0,
   setCartItems: () => {},
   addItemToCart: () => {},
   subtractItemFromCart: () => {},
+  letsCalculateCartTotal: () => {},
 });
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, calcCartTotal] = useState(0);
 
   const hideCart = () => {
     hideTheCart(isCartOpen, setIsCartOpen);
@@ -67,14 +78,20 @@ export const CartProvider = ({ children }) => {
     setCartItems(subtractProductFromCart(cartItems, productToAdd));
   };
 
+  const letsCalculateCartTotal = (cartItems) => {
+    calcCartTotal(calculateCartTotal(cartItems));
+  };
+
   const value = {
     isCartOpen,
     setIsCartOpen,
     hideCart,
     cartItems,
+    cartTotal,
     setCartItems,
     addItemToCart,
     subtractItemFromCart,
+    letsCalculateCartTotal,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

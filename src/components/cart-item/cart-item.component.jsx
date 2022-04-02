@@ -3,11 +3,10 @@ import { CartContext } from "../../contexts/cart.context";
 import "./cart-item.styles.scss";
 
 const CartItem = ({ product }) => {
-  const { id, name, imageUrl, price } = product;
+  const { name, imageUrl, price } = product;
   let { quantity } = product;
 
-  const { cartItems, addItemToCart, subtractItemFromCart } =
-    useContext(CartContext);
+  const { addItemToCart, subtractItemFromCart } = useContext(CartContext);
 
   const changeQuantity = (e) => {
     if (e.target.classList.contains("add-to-quantity")) {
@@ -31,7 +30,7 @@ const CartItem = ({ product }) => {
       <div class="cart-product-info-container">
         <p className="name">{name}</p>
         <p className="price"> {price * quantity} $ </p>
-        <div>
+        <div className="cart-item-div div-1">
           <button className="add-to-quantity" onClick={changeQuantity}>
             +
           </button>
@@ -41,9 +40,9 @@ const CartItem = ({ product }) => {
           <button className="subtract-from-quantity" onClick={changeQuantity}>
             -
           </button>
-          <button style={{ marginLeft: "0.3rem", padding: "0.4rem" }}>
-            Remove
-          </button>
+        </div>
+        <div className="cart-item-div div-2">
+          <button>Remove</button>
         </div>
       </div>
     </div>

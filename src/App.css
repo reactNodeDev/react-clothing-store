@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Titillium Web", sans-serif;
 }
@@ -9,4 +15,19 @@ a {
 
 a:hover {
   border-bottom: 0.4px solid aquamarine;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  background-color: lightgray;
+  color: black;
+}
+
+::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #272727;
 }
