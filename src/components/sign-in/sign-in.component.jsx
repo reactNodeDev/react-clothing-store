@@ -3,10 +3,10 @@ import {
   signInWithGooglePopup,
   signInUserWithEmailAndPassword,
 } from "../../utils/Firebase/firebase.utils";
-import Button from "../button/button.component";
 import ErrorMessage from "../error-message/error-message.component";
 import FormInput from "../form-inputs/form-input.component";
 import "./sign-in.styles.scss";
+import Button, { BTN_TYPE_CLASSES } from "../button/button.component";
 
 const defaultFormFields = {
   email: "",
@@ -98,13 +98,17 @@ const SignInForm = () => {
         )}
         <div className="button-row">
           <div>
-            <Button type="submit" children="Log In" />
+            <Button
+              type="submit"
+              children="Log In"
+              buttonType={BTN_TYPE_CLASSES.default}
+            />
           </div>
           <div>
             <Button
               type="button"
               onClick={logGoogleUser}
-              buttonType="google"
+              buttonType={BTN_TYPE_CLASSES.google}
               children="Login with Google"
             />
           </div>

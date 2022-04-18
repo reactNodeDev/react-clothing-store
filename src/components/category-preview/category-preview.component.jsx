@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../button/button.component";
 import ProductCard from "../product-card/product-card.component";
 import "./category-preview.styles.scss";
@@ -17,10 +18,12 @@ const CategoryPreview = ({ title, products }) => {
             );
           })}
         <div className="see-more-div">
-          <Button
-            children={`See All ${title.toUpperCase()}`}
-            buttonType="inverted"
-          />
+          <Link to={`/shop/${title}`}>
+            <Button
+              children={`See All ${title.toUpperCase()}`}
+              buttonType="inverted"
+            />
+          </Link>
         </div>
       </div>
     </>

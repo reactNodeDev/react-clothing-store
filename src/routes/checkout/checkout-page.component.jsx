@@ -12,13 +12,16 @@ const CheckoutPage = () => {
   return (
     <>
       <div class="checkout-items-grid">
-        {cartItems !== [] &&
+        {cartItems.length ? (
           cartItems.map(
             (item) =>
               item.quantity !== 0 && (
                 <CheckoutCartItem key={item.id} item={item} />
               )
-          )}
+          )
+        ) : (
+          <h2>Your cart is empty</h2>
+        )}
       </div>
       <h3 className="subtotal">Subtotal - {cartTotal} $</h3>
 

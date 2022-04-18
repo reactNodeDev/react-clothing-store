@@ -25,7 +25,7 @@ const CheckoutCartItem = ({ item }) => {
         <span class="name">
           {quantity} X {name}
         </span>
-        <span class="price"> {price} $ </span>
+        <span class="price"> {price * quantity} $ </span>
         <div class="cart-item-button-container">
           <button
             class="cart-button subtract-from-quantity"

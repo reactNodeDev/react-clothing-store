@@ -3,7 +3,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDataFromAuth,
 } from "../../utils/Firebase/firebase.utils";
-import Button from "../button/button.component";
+import Button, { BTN_TYPE_CLASSES } from "../button/button.component";
 import ErrorMessage from "../error-message/error-message.component";
 import FormInput from "../form-inputs/form-input.component";
 import "./sign-up.styles.scss";
@@ -113,7 +113,11 @@ const SignUpForm = () => {
           </Fragment>
         )}
 
-        <Button type="submit" children="Sign Up" />
+        <Button
+          type="submit"
+          children="Sign Up"
+          buttonType={BTN_TYPE_CLASSES.default}
+        />
       </form>
     </div>
   );

@@ -6,7 +6,7 @@
   grid-auto-rows: 1fr 0.2fr;
   grid-template-areas:
     "product1 product2 product3 product4"
-    "seemorediv seemorediv seemorediv seemorediv";
+    "seemorebuttondiv seemorebuttondiv seemorebuttondiv seemorebuttondiv";
 }
 
 .title {
@@ -32,7 +32,7 @@
 }
 
 .see-more-div {
-  grid-area: seemorediv;
+  grid-area: seemorebuttondiv;
 }
 
 @media only screen and (max-width: 600px) {
@@ -45,7 +45,7 @@
     grid-template-areas:
       "product1 product2"
       "product3 product4"
-      "seemorediv seemorediv";
+      "seemorebuttondiv seemorebuttondiv";
   }
 }
 
@@ -60,7 +60,7 @@
       "product2"
       "product3"
       "product4"
-      "seemorediv";
+      "seemorebuttondiv";
   }
 }
 
@@ -74,7 +74,7 @@
     grid-template-areas:
       "product1 product2 product3"
       "product4 . ."
-      "seemorediv seemorediv seemorediv";
+      "seemorebuttondiv seemorebuttondiv seemorebuttondiv";
   }
 
   .see-more-div {

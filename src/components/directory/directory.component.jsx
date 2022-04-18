@@ -1,15 +1,49 @@
 import React from "react";
-import "./directory.styles.scss";
+import {DirectoryContainer} from "./directory.styles.jsx";
 import CategoryItem from "../category-item/category-item.component";
 
-// directory component will be a class component because we want to store the state values of menu items
-const Directory = ({ categories }) => {
+const categories = [
+  {
+    id: 1,
+    title: "hats",
+    imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+    route: 'shop/hats'
+  },
+  {
+    id: 2,
+    title: "jackets",
+    imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
+    route: 'shop/jackets'
+  },
+  {
+    id: 3,
+    title: "sneakers",
+    imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
+    route: 'shop/sneakers'
+  },
+  {
+    id: 4,
+    title: "women",
+    imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
+    size: "large",
+    route: 'shop/women'
+  },
+  {
+    id: 5,
+    title: "men",
+    imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+    size: "large",
+    route: 'shop/men'
+  },
+];
+
+const Directory = () => {
   return (
-    <div className="directory-container">
+    <DirectoryContainer>
       {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
+        <CategoryItem key={category.id} category={category}/>
       ))}
-    </div>
+    </DirectoryContainer>
   );
 };
 
